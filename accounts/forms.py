@@ -13,7 +13,6 @@ class RegisterForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        # Зрозуміла помилка при спробі повторної реєстрації
         if User.objects.filter(email__iexact=email).exists():
             raise forms.ValidationError("Користувач з таким email вже зареєстрований.")
         return email
